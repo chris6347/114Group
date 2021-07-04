@@ -34,4 +34,28 @@
         limit #{offset} , #{pageSize}
     </select>
 
+
+    <!--删除检查项-->
+    <!--1. 查询检查项是否被检查组使用-->
+    <select id="findCountById" parameterType="int" resultType="long">
+        select count(*) from t_checkgroup_checkitem where checkitem_id = #{id}
+    </select>
+    <!--2. 删除检查项-->
+    <delete id="delete" parameterType="int">
+        delete from t_checkitem where id = #{id}
+    </delete>
+
+
+    <!--更新检查项-->
+    <update id="update" parameterType="checkitem">
+        update t_checkitem set code =#{code} , name = #{name}  , sex = #{sex}  , age = #{age}
+            , price = #{price}  ,type = #{type} ,attention= #{attention}, remark = #{remark}  where id = #{id}
+    </update>
+
+
+    <!--查询所有的检查项-->
+    <select id="findAll" resultType="checkitem">
+        select * from t_checkitem
+    </select>
+
 </mapper>

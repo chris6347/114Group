@@ -8,11 +8,26 @@ import java.util.List;
 public interface CheckItemDao {
 
     /**
+     * 查询所有
+     * @return
+     */
+    List<CheckItem> findAll();
+
+
+    /**
      * 添加检查项
      * @param checkItem
      * @return 影响的行数
      */
     int add(CheckItem checkItem);
+
+
+    /**
+     * 更新检查项
+     * @param checkItem
+     * @return
+     */
+    int update(CheckItem checkItem);
 
 
     /**
@@ -29,4 +44,19 @@ public interface CheckItemDao {
      * @return
      */
     List<CheckItem> findPage(QueryPageBean queryPageBean);
+
+
+    /**
+     * 根据检查项的id值查询是否有被检查组使用
+     * @param id
+     * @return 被检查组使用的总数
+     */
+    long findCountById (int id);
+
+    /**
+     * 根据id删除检查项
+     * @param id
+     * @return
+     */
+    int delete(int id);
 }

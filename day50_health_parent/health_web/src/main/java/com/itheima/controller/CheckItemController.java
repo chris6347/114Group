@@ -18,9 +18,9 @@ import com.itheima.health.pojo.CheckItem;
 import com.itheima.service.CheckItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 //@Controller // 现在就不打@controller注解了，因为我们所有的后台方法返回的都是json字符串，不会有页面的跳转。
 @RestController // @RestController = @Controller + @ResponseBody
@@ -55,6 +55,73 @@ public class CheckItemController {
 
         return result;
     }
+
+    /**
+     * 查询所有的检查项，这里使用了RestFul的风格。
+     * @return
+     */
+    @GetMapping("/checkItem")
+    public Result findAll(){
+        try {
+            //1. 调用service
+            List<CheckItem> list = cs.findAll();
+
+            //2. 给页面响应
+            return new Result(true , MessageConstant.QUERY_CHECKITEM_SUCCESS, list);
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            return new Result(false , MessageConstant.QUERY_CHECKITEM_FAIL);
+        }
+
+    }
+
+    /**
+     * 更新检查项
+     *
+     * @param checkItem
+     * @return
+     */
+    @RequestMapping("/update")
+    public Result update(@RequestBody CheckItem checkItem){
+
+        System.out.println("controller=" + checkItem);
+
+        //1. 调用service
+        int row = cs.update(checkItem);
+
+        //2. 给页面响应
+        Result result = null;
+        if(row >0 ){
+            result = new Result(true , MessageConstant.EDIT_CHECKITEM_SUCCESS);
+        }else{
+            result = new Result(false , MessageConstant.EDIT_CHECKITEM_FAIL);
+        }
+        return result;
+    }
+
+    /**
+     * 删除检查项
+     * @param id
+     * @return
+     */
+    @RequestMapping("/delete")
+    public Result delete(int id){
+
+        //1. 调用service
+        int row = cs.delete(id);
+
+        //2. 给页面响应
+        Result result = null;
+        if(row >0 ){
+            result = new Result(true , MessageConstant.DELETE_CHECKITEM_SUCCESS);
+        }else{
+            result = new Result(false , MessageConstant.DELETE_CHECKITEM_FAIL);
+        }
+        return result;
+    }
+
+
 
     /**
      * 新增检查项

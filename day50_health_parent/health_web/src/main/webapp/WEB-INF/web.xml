@@ -22,7 +22,7 @@
 			<url-pattern>*.do</url-pattern>
 		</servlet-mapping>
 
-	<!--springmvc已经定义好了过滤器，可以帮助我们解决post请求，中文乱码的问题，我们只需要配置即可-->
+	    <!--springmvc已经定义好了过滤器，可以帮助我们解决post请求，中文乱码的问题，我们只需要配置即可-->
 		<filter>
 			<filter-name>char</filter-name>
 			<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>

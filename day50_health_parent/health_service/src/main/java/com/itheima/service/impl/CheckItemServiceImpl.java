@@ -62,4 +62,52 @@ public class CheckItemServiceImpl implements CheckItemService {
 
         return new PageResult<CheckItem>(total , rows);
     }
+
+    /**
+     * 删除检查项
+     *      思路：
+     *          1. 检查项不能按照以前的操作办法，直接删除。
+     *          2. 要做判断，判断检查项是否有被检查组所使用
+     *              2.1 有：不能删除
+     *              2.2 没有： 可以删除
+     *          3. 判断检查项是否有被检查组使用，其实很容易，需要拿着检查项的id值去查询中间表（t_checkgroup_checkitem）
+     *              如果在里面能查询出来有记录，那么则表示有被检查项使用。只需要知道总数即可。
+     *              返回： =0 ，即表示没有检查组使用
+     *              返回： >0 , 表示有检查组使用。
+     *          4. 这就表示了要想完成检查项的删除工作，dao需要提供两个方法
+     *              4.1 查询检查项是否被检查组使用
+     *              4.2 删除的方法
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public int delete(int id) {
+        //1. 先查询检查项是否有被检查组使用
+        long count = dao.findCountById(id);
+        if(count > 0){ //表示有检查组使用
+            System.out.println("有检查组使用该检查项，禁止删除！");
+            return 0; // 返回给controller 表示一行都没有删除掉
+        }
+
+        //2. 删除检查项
+        return dao.delete(id);
+    }
+
+    @Override
+    public int update(CheckItem checkItem) {
+        System.out.println("checkItem==" + checkItem);
+        return dao.update(checkItem);
+    }
+
+    /**
+     * 查询所有的检查项
+     * @return
+     */
+    @Override
+    public List<CheckItem> findAll() {
+        return dao.findAll();
+    }
+
+
 }

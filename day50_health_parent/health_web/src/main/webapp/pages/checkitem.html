@@ -231,6 +231,31 @@
             methods: {
                 //编辑
                 handleEdit() {
+
+                    console.log("提交的参数：");
+                    console.log(this.formData);
+
+
+                    //1. 发请求，提交数据给后台，完成更新的操作
+                    axios.post("/checkItem/update.do", this.formData).then(response=>{
+                        console.log("更新结果：");
+                        console.log(response);
+                        if(response.data.flag){
+
+                            //1. 提示
+                            this.$message.success(response.data.message);
+
+                            //2. 让对话框消失
+                            this.dialogFormVisible4Edit = false;
+
+                            //3.刷新页面
+                            this.findPage();
+                        }else{
+                            this.$message.error(response.data.message);
+                            this.dialogFormVisible4Edit = false;
+                        }
+                    });
+
                 },
                 //添加
                 handleAdd () {
@@ -333,6 +358,18 @@
                 },
                 // 弹出编辑窗口
                 handleUpdate(row) {
+
+                    //1. 弹出编辑的对话框
+                    this.dialogFormVisible4Edit = true;
+
+                    //2. 把点击的这条记录的数据放到对话框里面回显。
+                    //2.1  必须持有现在点击的这条记录的数据：row
+                    //2.2  怎么把这个数据row 放到我们的对话框里面去显示呢？
+                    this.formData = row;
+
+
+
+
                 },
                 //切换页码
                 handleCurrentChange(currentPage) {
@@ -344,7 +381,46 @@
                 },
                 // 删除
                 handleDelete(row) {
+
+                    /*
+                        1. 弹窗口询问确认要删除吗？ confirm(""), 笔记， 百度， elementui官网 ，
+                        2. 真的点击了确认，那么就发请求，
+                        3. 发请求的时候要把id传递给后台。
+                     */
+
+                    this.$confirm('确认删除该检查项吗?', '提示', {
+                        confirmButtonText: '确定',
+                        cancelButtonText: '取消',
+                        type: 'warning'
+                    }).then(() => {
+
+                        //发请求 ， 传递id ... 点击哪个条目，就给哪个条目的id值。
+                        console.log(row);
+
+                        // 当我们传递的数据很简单，只是一个单一的数字而已，那么其实没有必要使用post请求+参数的写法
+                        //直接把参数拼接到地址上即可。 /checkItem/delete.do?id=3
+                        axios.get("/checkItem/delete.do?id="+row.id).then(response=>{
+                            console.log("删除结果：");
+                            console.log(response);
+                            if(response.data.flag){
+                                //1. 给提示
+                                this.$message.success(response.data.message);
+
+                                //2. 重新刷新页面，
+                                this.findPage();
+                            }else{
+                                this.$message.error(response.data.message);
+                            }
+                        });
+
+                    }).catch(() => {
+                        this.$message({
+                            type: 'info',
+                            message: '已取消删除'
+                        });
+                    });
                 }
+
             }
         })
     </script>
