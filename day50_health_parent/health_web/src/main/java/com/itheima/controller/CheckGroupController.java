@@ -16,21 +16,6 @@ public class CheckGroupController {
     @Autowired
     private CheckGroupService cgs;
 
-    /*
-        前置：
-            1. DispatcherSrevlet 抓的  /
-                localhost:8080/项目映射名/aa
-
-
-            2. DispatcherServlet抓所有尾巴带.itheima后缀..
-                localhost:8080/项目映射名/aa.itheima
-                localhost:8080/项目映射名/aa.itheima.itheima
-     */
-
-    @RequestMapping("/aa.itheima")
-    public void aa(){
-
-    }
 
     /**
      * 新增检查组 localhost:83/checkgroup
