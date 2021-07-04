@@ -361,14 +361,38 @@
 
                     //1. 弹出编辑的对话框
                     this.dialogFormVisible4Edit = true;
+                    console.log(row);
 
                     //2. 把点击的这条记录的数据放到对话框里面回显。
                     //2.1  必须持有现在点击的这条记录的数据：row
                     //2.2  怎么把这个数据row 放到我们的对话框里面去显示呢？
-                    this.formData = row;
 
+                    /*
+                        问题：
+                            1. 如果是这样写代码进行数据的回显，那么修改弹出的更新对话框的内容，背后的行的数据也跟着改变
+                        原因：
+                            2. 原因是这两个对象使用的是同一个地址，其实他们根本不是两个对象，而是同一个对象！
+                            3. 这个formData 和 row 指向的是同一个位置。
+                        解决：
+                            4. 要想解决这个问题，很容易：让formData有自己的空间，有自己的区域，存放同样的数据。
+                    */
+                    //this.formData = row;
 
-
+                    //最原始的办法就是：
+                    /*this.formData = {
+                        age : row.age,
+                        name : row.name,
+                        price :row.price,
+                        remark:row.remark,
+                        code : row.code
+                    };*/
+                    /*
+                        高级的玩法是这样：
+                            1. JSON.stringify(row) ,就是把row转成json格式的字符串
+                            2. JSON.parse(字符串) ， 把刚才的json字符串，变成json对象
+                            3. 这样一来一回的作用，目的就是为了构建自己的对象，有了自己内存空间。
+                     */
+                    this.formData = JSON.parse(JSON.stringify(row));
 
                 },
                 //切换页码

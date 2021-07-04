@@ -164,7 +164,7 @@
                                 </el-tabs>
                             </template>
                             <div slot="footer" class="dialog-footer">
-                                <el-button @click="dialogFormVisible = false">取消</el-button>
+                                <el-button @click="handleAddCancel()">取消</el-button>
                                 <el-button type="primary" @click="handleAdd()">确定</el-button>
                             </div>
                         </el-dialog>
@@ -276,12 +276,18 @@
                 dialogFormVisible: false,//控制添加窗口显示/隐藏
                 dialogFormVisible4Edit:false//控制编辑窗口显示/隐藏
             },
-            created() {
+            created() { // 当vue对象创建完毕之后，就调用这个findPage方法~
                 this.findPage();
             },
             methods: {
                 //编辑
                 handleEdit() {
+                },
+
+                //添加取消
+                handleAddCancel () {
+                    this.dialogFormVisible = false;
+                    this.resetForm();
                 },
                 //添加
                 handleAdd () {
@@ -311,17 +317,84 @@
                                 地址上：this.checkitemIds
                                 参数位置：this.formData
                      */
-                    axios.post("/checkgroup.do/"+this.checkitemIds, this.formData).then(response=>{
+                    axios.post("/checkgroup/"+this.checkitemIds+".do", this.formData).then(response=>{
                         console.log("添加结果：");
                         console.log(response);
+
+                        if(response.data.flag){
+
+                            //1. 弹出提示
+                            this.$message.success(response.data.message);
+
+                            //2. 让对话框消失掉
+                            this.dialogFormVisible = false;
+
+
+                            //3. 刷新页面
+                            this.findPage();
+
+                            //4. 重置表单
+                            this.resetForm();
+
+                        }else{
+                            this.$message.error(response.data.message);
+                            this.dialogFormVisible = false;
+                        }
+
                     });
 
                 },
                 //分页查询
                 findPage() {
+
+                    //1. 查询参数：
+                    console.log("分页查询的参数：");
+                    console.log(this.pagination);
+
+                    var data = encodeURIComponent(JSON.stringify(this.pagination));
+                    console.log(data);
+                    var data2 = encodeURIComponent("/1/10");
+                    console.log(data2);
+
+                    /*
+                        2. 发请求
+                            2.1 get请求携带参数有两种写法：
+                                1. 在地址上使用?的形式拼接
+                                2.  写在参数的位置上也可以，但是它还需要一个特定的格式：
+                                {params:{username:'admin', password:'123456'}}
+
+                            2.2 由于我们使用了RestFul风格来写代码。那么在这里提交数据的时候。
+                                a. 我们不是采用post请求提交的，而是采用get请求提交的。
+                                b. get请求的提交有一个特点，数据会全部拼接到地址栏上。
+                                c. 那么这份数据提交到后台就不会以json的数据格式提交，
+                      */
+                    axios.get("/checkgroup.do", {params:this.pagination}).then(response=>{
+                        console.log("分页查询结果：");
+                        console.log(response);
+
+                        if(response.data.flag){
+
+                            //1. 设置总记录数
+                            this.pagination.total = response.data.data.total;
+
+                            //2. 设置当前页的集合数
+                            this.dataList = response.data.data.rows;
+
+                        }
+                    });
+
                 },
                 // 重置表单
                 resetForm() {
+
+                    //1. 重置检查组的基本信息
+                    this.formData =  {};
+
+                    //2. 重置检查项的选中信息
+                    this.checkitemIds = [];
+
+                    //3. 重置选项卡的选中效果，默认还是选中基本信息
+                    this.activeName = 'first';
                 },
                 // 弹出添加窗口
                 handleCreate() {
@@ -357,6 +430,9 @@
                 },
                 //切换页码
                 handleCurrentChange(currentPage) {
+
+                    this.pagination.currentPage = currentPage;
+                    this.findPage();
                 },
                 // 删除
                 handleDelete(row) {

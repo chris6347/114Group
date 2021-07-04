@@ -1,6 +1,8 @@
 package com.itheima.controller;
 
 import com.itheima.constant.MessageConstant;
+import com.itheima.entity.PageResult;
+import com.itheima.entity.QueryPageBean;
 import com.itheima.entity.Result;
 import com.itheima.health.pojo.CheckGroup;
 import com.itheima.service.CheckGroupService;
@@ -44,5 +46,23 @@ public class CheckGroupController {
              result = new Result(false , MessageConstant.ADD_CHECKGROUP_FAIL);
         }
         return result;
+    }
+
+
+    @GetMapping("/checkgroup")
+    public Result findPage(QueryPageBean queryPageBean){
+        System.out.println("queryPageBean=" + queryPageBean);
+
+        try {
+            //1. 调用service
+            PageResult<CheckGroup> pr = cgs.findPage(queryPageBean);
+
+            //2. 给页面响应
+            return new Result (true , MessageConstant.QUERY_CHECKGROUP_SUCCESS , pr);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result (false , MessageConstant.QUERY_CHECKGROUP_FAIL );
+        }
+
     }
 }
