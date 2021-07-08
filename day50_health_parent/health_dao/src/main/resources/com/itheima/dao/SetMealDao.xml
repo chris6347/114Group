@@ -15,4 +15,9 @@
     <insert id="addSetMealCheckGroups">
         insert into t_setmeal_checkgroup values(#{setmealId}, #{groupId})
     </insert>
+
+    <!--查询所有图片-->
+    <select id="findAllImg" resultType="string">
+        select img from t_setmeal
+    </select>
 </mapper>

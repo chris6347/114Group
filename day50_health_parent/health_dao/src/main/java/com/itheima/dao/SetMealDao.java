@@ -3,7 +3,15 @@ package com.itheima.dao;
 import com.itheima.health.pojo.Setmeal;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 public interface SetMealDao {
+
+    /**
+     * 查询所有图片
+     * @return
+     */
+    List<String> findAllImg();
 
     /**
      * 保存套餐的基本信息
