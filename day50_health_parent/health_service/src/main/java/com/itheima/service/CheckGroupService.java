@@ -4,7 +4,23 @@ import com.itheima.entity.PageResult;
 import com.itheima.entity.QueryPageBean;
 import com.itheima.health.pojo.CheckGroup;
 
+import java.util.List;
+
 public interface CheckGroupService {
+
+    /**
+     * 查询所有
+     * @return
+     */
+    List<CheckGroup> findAll();
+    /**
+     * 更新检查组
+     * @param checkGroup
+     * @param checkitemIds
+     * @return
+     */
+    int update(CheckGroup checkGroup , int [] checkitemIds);
+
 
     /**
      * 新增检查组
@@ -21,4 +37,12 @@ public interface CheckGroupService {
      * @return
      */
     PageResult<CheckGroup> findPage(QueryPageBean bean);
+
+
+    /**
+     * 根据组id查询所有的检查项
+     * @param groupId
+     * @return
+     */
+    List<Integer> findItemsByGroupId(int groupId);
 }

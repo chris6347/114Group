@@ -10,6 +10,12 @@ import java.util.List;
 public interface CheckGroupDao {
 
     /**
+     * 查询所有
+     * @return
+     */
+    List<CheckGroup> findAll();
+
+    /**
      * 添加检查组
      * @param checkGroup
      * @return 影响的行数
@@ -31,4 +37,36 @@ public interface CheckGroupDao {
      * @return
      */
     Page<CheckGroup> findPage(QueryPageBean bean);
+
+
+    /**
+     * 根据组id查询所有的检查项
+     * @param groupId
+     * @return
+     */
+    List<Integer> findItemsByGroupId(int groupId);
+
+
+    /**
+     * 更新基本信息
+     * @param checkGroup
+     * @return
+     */
+    int update(CheckGroup checkGroup);
+
+    /**
+     * 根据组的id删除检查项数据
+     * @param groupId
+     * @return
+     */
+    int deleteItemsByGroupId(int groupId);
+
+
+    /**
+     * 添加检查组的检查项信息
+     * @param groupId
+     * @param itemId
+     * @return
+     */
+    int addGroupItems(@Param("groupId") int groupId , @Param("itemId") int itemId);
 }

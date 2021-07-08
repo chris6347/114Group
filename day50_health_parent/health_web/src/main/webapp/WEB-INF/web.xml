@@ -39,4 +39,25 @@
 			<url-pattern>/*</url-pattern>
 		</filter-mapping>
 
+		<!--如果发现前端提交过来的put请求并没有到达controller方法，那么久在这里配置两个过滤器
+			这两个过滤器是针对我们以前从普通的网页里面，提交的form表单时数据
+		-->
+		<!--<filter>
+			<filter-name>put</filter-name>
+			<filter-class>org.springframework.web.filter.HttpPutFormContentFilter</filter-class>
+		</filter>
+		<filter-mapping>
+			<filter-name>put</filter-name>
+			<url-pattern>/*</url-pattern>
+		</filter-mapping>
+
+		<filter>
+			<filter-name>hidden</filter-name>
+			<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+		</filter>
+		<filter-mapping>
+			<filter-name>hidden</filter-name>
+			<url-pattern>/*</url-pattern>
+		</filter-mapping>-->
+
 </web-app>

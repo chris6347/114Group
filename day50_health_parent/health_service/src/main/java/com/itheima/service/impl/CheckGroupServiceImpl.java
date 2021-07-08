@@ -25,6 +25,54 @@ public class CheckGroupServiceImpl implements CheckGroupService {
     private CheckGroupDao dao;
 
     /**
+     * 查询所有
+     * @return
+     */
+    @Override
+    public List<CheckGroup> findAll() {
+        return dao.findAll();
+    }
+
+    /**
+     * 更新操作
+     *  1. 更新也有两份数据，一份是基本信息，一份是选中的检查项信息
+     *  2. 这两份数据存放到的数据库表也不一样： 基本信息是存放在t_checkgroup, 用到的检查项信息，是放在中间表(t_checkgroup_checkitem)
+     *  3. 更新检查组的基本信息，是很容易的，但是更新检查项选中的信息，有点绕..
+     *
+     *      3.1 更新检查组的基本信息，就按照我们往常熟悉的更新操作来做即可。
+     *
+     *      3.2 更新检查组的检查项的选中信息，有点绕。
+     *          3.2.1 因为这里面可能涉及到3种情况：
+     *              a. 可能从页面提交过来的检查项信息，变多了。
+     *              b. 可能从页面提交过来的检查项信息，变少了。
+     *              c. 可能从页面提交过来的检查项信息，根本没有变化。
+     *          3.2.2 为了尽可能的减少我们编写的代码， 现在打算投机一把：
+     *              把这个组包含的所有检查项信息都给删除掉，然后再重新添加进去即可。 这里操作的是中间表 t_checkgroup_checkitem
+     * @param checkGroup
+     * @param checkitemIds
+     * @return
+     */
+    @Override
+    public int update(CheckGroup checkGroup, int[] checkitemIds) {
+
+        //1. 更新基本信息
+        int row = dao.update(checkGroup);
+
+        //2. 删除所有的检查组包含的检查项
+        dao.deleteItemsByGroupId(checkGroup.getId());
+
+        //3. 添加
+        int row2 = 0 ;
+        if(checkitemIds != null  && checkitemIds.length > 0){
+            for (int checkitemId : checkitemIds) {
+                row2 += dao.addGroupItems(checkGroup.getId() , checkitemId);
+            }
+        }
+
+        return row >0 && row2  == checkitemIds.length  ?  1 : 0;
+    }
+
+    /**
      * 新增检查组
      *   1. 新增检查组的时候，有两份数据： 检查组的基本信息，检查组用到的检查项信息
      *   2. 这两份数据存放到的数据库表也不一样： 基本信息是存放在t_checkgroup, 用到的检查项信息，是放在中间表(t_checkgroup_checkitem)
@@ -85,5 +133,10 @@ public class CheckGroupServiceImpl implements CheckGroupService {
         List<CheckGroup> rows = page.getResult(); //得到当前页的集合数据
 
         return new PageResult<>(total , rows );
+    }
+
+    @Override
+    public List<Integer> findItemsByGroupId(int groupId) {
+        return dao.findItemsByGroupId(groupId);
     }
 }

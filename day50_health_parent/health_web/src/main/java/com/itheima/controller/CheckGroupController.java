@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
+import java.util.List;
 
 @RestController
 public class CheckGroupController {
@@ -17,6 +18,61 @@ public class CheckGroupController {
     //注入service
     @Autowired
     private CheckGroupService cgs;
+
+    @GetMapping("/checkgroup/all")
+    public Result findAll(){
+        try {
+            List<CheckGroup> list = cgs.findAll();
+            return new Result(true , MessageConstant.QUERY_CHECKGROUP_SUCCESS, list);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result(false , MessageConstant.QUERY_CHECKGROUP_FAIL);
+        }
+    }
+
+
+        /**
+         * 更新检查组
+         * @param checkGroup
+         * @param checkitemIds
+         * @return
+         */
+    @PutMapping("/checkgroup/{checkitemIds}")
+    public Result update(@RequestBody CheckGroup checkGroup , @PathVariable("checkitemIds") int [] checkitemIds){
+
+        System.out.println("checkGroup="+checkGroup);
+        System.out.println("checkitemIds="+Arrays.toString(checkitemIds));
+
+        //1. 调用service
+        int row = cgs.update(checkGroup , checkitemIds);
+
+
+        //2. 给页面响应
+        Result result = null;
+        if(row > 0){
+            result = new Result(true , MessageConstant.ADD_CHECKGROUP_SUCCESS);
+        }else {
+            result = new Result(false , MessageConstant.ADD_CHECKGROUP_FAIL);
+        }
+        return result;
+    }
+
+    /*
+        1. 根据检查组的id，查询检查项都有哪些
+        2.  /user/3
+     */
+    @GetMapping("/checkgroup/items/{id}")
+    public Result findItemsByGroupId(@PathVariable("id") int groupId){
+
+        try {
+            List<Integer> list = cgs.findItemsByGroupId(groupId);
+            return new Result(true , "查询检查项成功" , list);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result(false , "查询检查项失败");
+        }
+
+    }
 
 
     /**
@@ -63,6 +119,13 @@ public class CheckGroupController {
             e.printStackTrace();
             return new Result (false , MessageConstant.QUERY_CHECKGROUP_FAIL );
         }
+    }
 
+    @GetMapping("/checkgroup2/{queryPageBean}")
+    public Result findPage2(@PathVariable("queryPageBean") String queryPageBean){
+        System.out.println("queryBean=" + queryPageBean);
+
+
+        return null;
     }
 }

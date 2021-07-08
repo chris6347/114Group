@@ -42,4 +42,27 @@
         </where>
     </select>
 
+    <select id="findItemsByGroupId" parameterType="int" resultType="integer">
+        select checkitem_id from t_checkgroup_checkitem where checkgroup_id = #{groupId}
+    </select>
+
+    <!--更新检查组信息-->
+    <update id="update" parameterType="checkgroup">
+        update t_checkgroup set code = #{code} , name = #{name} , helpCode = #{helpCode} , sex=#{sex} ,
+            remark = #{remark} , attention = #{attention}  where id = #{id}
+    </update>
+
+    <delete id="deleteItemsByGroupId" parameterType="int">
+        delete from t_checkgroup_checkItem where checkgroup_id = #{groupId}
+    </delete>
+
+    <insert id="addGroupItems">
+        insert into t_checkgroup_checkItem values(#{groupId} , #{itemId})
+    </insert>
+
+
+    <!--查询所有-->
+    <select id="findAll" resultType="checkgroup">
+        select * from t_checkgroup
+    </select>
 </mapper>
