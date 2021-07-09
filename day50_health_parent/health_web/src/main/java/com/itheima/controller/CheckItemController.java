@@ -17,6 +17,7 @@ import com.itheima.entity.Result;
 import com.itheima.health.pojo.CheckItem;
 import com.itheima.service.CheckItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -82,6 +83,7 @@ public class CheckItemController {
      * @param checkItem
      * @return
      */
+    @PreAuthorize("hasAuthority('CHECKITEM_EDIT')")
     @RequestMapping("/update")
     public Result update(@RequestBody CheckItem checkItem){
 
@@ -105,6 +107,7 @@ public class CheckItemController {
      * @param id
      * @return
      */
+    @PreAuthorize("hasAuthority('CHECKITEM_DELETE6666666666')")
     @RequestMapping("/delete")
     public Result delete(int id){
 
@@ -128,6 +131,7 @@ public class CheckItemController {
      * @param checkItem
      * @return
      */
+    @PreAuthorize("hasAuthority('CHECKITEM_ADD')")
     @RequestMapping("/add")
     public Result add(@RequestBody CheckItem checkItem){
 

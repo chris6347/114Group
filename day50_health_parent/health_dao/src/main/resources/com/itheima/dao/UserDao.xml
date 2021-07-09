@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="com.itheima.dao.UserDao">
+
+    <!--
+        根据用户名查询用户的信息
+            1. 权限的策略需要3张表支撑： t_user(用户表) ， t_role(角色表) ， t_permission(权限表)
+            2. 这也就表示了，我们如果想要查询一个用户，拥有哪些权限，那么一定要把这三张表都给查询。
+            3. 要想查询多张表有两种办法：
+                3.1 使用关联查询，多表联合一起查询： 内连接、外连接（左外、右外）。
+                    优点：代码进奏，都是在一个文件里面写完了。
+                    缺点：不好理解，代码多，揉到一块了。面对庞大数据量的时候，效率比较低。
+                3.2 单张表单张表的查询，一张一张的查询。
+                    优点： 分得很清楚，在面对大数据量的时候，效率比较高一些
+                    缺点： 要写多个dao文件和xml文件。
+            4. 不管使用什么方式来查询，这里都不能使用resultType, 在具有多表查询的时候，不能使用resultType
+                而应该使用resultMap。
+    -->
+    <!--resultMap就是我们的属性和表的映射关系-->
+    <resultMap id="userMap" type="user">
+        <!--
+        默认情况下，如果表里面的列名和类的属性名一样，那么可以去掉这种对应关系。
+        <id column="id" property="id"/>
+        <result column="birthday" property="birthday"/>
+         ...
+        -->
+        <!--
+            1. 遇到了特殊的情况， roles属性没有与之对应的列，而且它是一个集合 它要对应的数据
+        不是user这张表，而是rolt那张表
+            2. 表示这个roles 是一个集合属性，它要去查询role表才可以得到数据。
+                property ：  属性
+                column:  把哪个列当场参数传递给下面的select选择的这个方法。
+                select : 要去执行哪个接口的方法才能得到role数据出来。
+        -->
+        <collection property="roles" column="id"  select="com.itheima.dao.RoleDao.findRoleByUid"/>
+    </resultMap>
+
+    <select id="findUserByUsername" parameterType="string" resultMap="userMap">
+        select * from t_user where username = #{username}
+    </select>
+
+    <!--<select id="findUserByUsername" parameterType="string" resultType="user">
+        select * from t_user where username = #{username}
+    </select>-->
+</mapper>
