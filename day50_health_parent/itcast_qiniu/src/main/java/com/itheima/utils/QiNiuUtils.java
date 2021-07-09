@@ -17,6 +17,8 @@ import java.util.List;
 
 public class QiNiuUtils {
 
+
+
     private static final String ACCESSKEY = "SALBDqm3En6D4p9bvdu4lurtR37t5siwLY34sgzk";
     private static final String SECRETKEY = "SHtc8QcH_omIPDAM0Eh4eyb5enehl7UGT8-XIVrB";
     // 对象仓库
@@ -28,6 +30,8 @@ public class QiNiuUtils {
         //uploadFile("D:\\home.png","aa.png");
         //removeFiles("aa.png");
         listFile();
+
+
     }
 
     /**

@@ -12,6 +12,7 @@
         <module>health_pojo</module>
         <module>health_dao</module>
         <module>health_service</module>
+        <module>itcast_springsecurity</module>
         <module>health_web</module>
         <module>health_jobs</module>
     </modules>

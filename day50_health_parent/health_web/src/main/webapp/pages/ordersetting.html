@@ -143,10 +143,60 @@
             },
             created: function () {//在vue初始化时调用
                 this.initData(null);
+                this.createData();
             },
             methods: {
+                createData(){ //发起请求获取当前月份的预约数据下来显示。
+
+                    //1. 发请求 要传递的参数有： 月份
+                    axios.get("/ordersetting/"+this.currentYear+"/"+this.currentMonth+".do").then(response=>{
+                        if(response.data.flag){
+                            this.leftobj = response.data.data;
+                        }
+                    });
+                },
 				//预约设置
                 handleOrderSet(day){
+
+                    //1. 弹窗...
+                    this.$prompt('请输入可预约的人数', '预约设置', {
+                        confirmButtonText: '确定',
+                        cancelButtonText: '取消',
+                        inputPattern: /^[1-9][0-9]*$/, // 第一位数字一定是1-9 ， 后面的位置，是0-9中的任意一个或者多个数字。 [0-9]*
+                        inputErrorMessage: '输入格式有误'
+                    }).then(({ value }) => {
+                        //1.弹窗提示
+                        this.$message({
+                            type: 'success',
+                            message: '您设置的预约数量是: ' + value
+                        });
+
+                        //2. 发请求，设置当前日期里面的预约数据即可。
+
+                        //2.1 拼接日期
+                        var date = this.formatDate(day.getFullYear() , day.getMonth()+1 , day.getDate());
+
+                        //2.2 发起请求
+                        axios.put("/ordersetting/"+date +"/"+value + ".do").then(response=>{
+                            if(response.data.flag){
+                                //1. 刷新页面
+                                this.createData();
+
+                                //2. 弹出提示
+                                this.$message.success("设置成功！");
+                            }else{
+                                this.$message.error("设置失败！");
+                            }
+
+                        });
+
+                    }).catch(() => {
+                        this.$message({
+                            type: 'info',
+                            message: '取消输入'
+                        });
+                    });
+
                 },
 				//上传之前进行文件格式校验
                 beforeUpload(file){
@@ -255,7 +305,7 @@
                     }
                     
                     /*this.leftobj = [
-                        { date: 1, number: 120, reservations: 1 },
+                        { date: 1, number: 120, reservations: 1 }, //date  ： 日期 1号，number： 可以预约多少人 reservations已经预约了多少人
                         { date: 3, number: 120, reservations: 1 },
                         { date: 4, number: 120, reservations: 120 },
                         { date: 6, number: 120, reservations: 1 },
@@ -266,6 +316,8 @@
                 goCurrentMonth: function (year, month) {
                     var d = new Date();
                     this.initData(this.formatDate(d.getFullYear(), d.getMonth() + 1, 1));
+
+                    this.createData();
                 },
 				//向前一个月
                 pickPre: function (year, month) {
@@ -275,12 +327,16 @@
                     var d = new Date(this.formatDate(year, month, 1));
                     d.setDate(0);
                     this.initData(this.formatDate(d.getFullYear(), d.getMonth() + 1, 1));
+
+                    this.createData();
                 },
 				//向后一个月
                 pickNext: function (year, month) {
                     var d = new Date(this.formatDate(year, month, 1));
                     d.setDate(35);////获取指定天之后的日期
                     this.initData(this.formatDate(d.getFullYear(), d.getMonth() + 1, 1));
+
+                    this.createData();
                 },
                 // 返回 类似 2016-01-02 格式的字符串
                 formatDate: function (year, month, day) {

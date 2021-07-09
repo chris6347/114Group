@@ -71,7 +71,6 @@ public class CheckGroupController {
             e.printStackTrace();
             return new Result(false , "查询检查项失败");
         }
-
     }
 
 

@@ -8,7 +8,7 @@
 <mapper namespace="com.itheima.dao.OrderSettingDao">
 
     <select id="findByOrderDate" parameterType="date" resultType="ordersetting">
-        select * from t_ordersetting where orderDate = #{date}
+        select * from t_ordersetting where orderDate = #{date,jdbcType=DATE}
     </select>
 
     <insert id="add">
@@ -16,7 +16,11 @@
     </insert>
 
     <update id="update">
-      update t_ordersetting set number = #{number} where orderDate = #{date}
+      update t_ordersetting set number = #{number} where orderDate = #{date ,jdbcType=DATE}
     </update>
+
+    <select id="findOrderByMonth" resultType="ordersetting">
+        select * from t_ordersetting where orderDate between #{begin} and #{end}
+    </select>
 
 </mapper>

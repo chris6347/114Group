@@ -20,6 +20,43 @@ public class OrderSettingServiceImpl implements OrderSettingService {
     @Autowired
     private OrderSettingDao dao;
 
+    @Override
+    public int updateOrderByDate(Date date, int number) {
+        int row = 0 ;
+        //1. 拿着日期去查询数据库，看一看数据库里面有没有这一天的预约数据。要查询出来这一天的数据
+        OrderSetting osInDB = dao.findByOrderDate(date);
+
+        //2. 判断这个对象是否存在，有还是没有？
+        if(osInDB == null){ // 数据库里面没有这个日期的数据， 要做添加操作。！
+            row = dao.add(date , number);
+        }else{ //表明数据库里面有这个日期的数据， 要做更新操作。
+
+            if(osInDB.getReservations() > number){
+                System.out.println("可以预约的最大人数必须要大于已经预约的人数！");
+                throw  new RuntimeException("可以预约的最大人数必须要大于已经预约的人数！");
+                //return 0;
+            }else{ //如果不大于，那么就可以更新数据了。
+                row = dao.update(date , number);
+            }
+        }
+        return row;
+    }
+
+    /**
+     * 按月份来查询数据
+     * @param year  2021
+     * @param month 7
+     * @return
+     */
+    @Override
+    public List<OrderSetting> findOrderByMonth(String year, String month) {
+
+        String begin = year+"-"+month+"-01"; //查询的月份开始值 2020-3-01
+        String end = year+"-"+month+"-31"; // 查询的月份结束值 2020-3-31
+
+        return dao.findOrderByMonth(begin, end);
+    }
+
     /**
      *  批量导入预约信息到数据库
      *  1. 数据的解释：

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+
+
+
+    <!--配置匿名访问的资源 访问css | js 不需要任何权限就可以访问-->
+    <security:http pattern="/css/**" security="none"/>
+    <security:http pattern="/js/**" security="none"/>
+    <security:http pattern="/img/**" security="none"/>
+
+    <!--
+        1. 权限的规则： 什么样的权限，能够访问什么样的路径
+
+        security:http :  用于设置权限规则
+            auto-config ： 用于自动配置 ，会自己给我们提供一个登录页面，当让问需要权限地址的时候，会自动跳转到登录页面去。
+            use-expressions ： 是否使用表达式...
+                true :那么下面的access里面必须是表达式 hasRole('ROLE_ADMIN') , hasAnyAuthority()
+                false :表示不用表达式，但是下面的access必须使用ROLE_打头。
+
+            security:intercept-url ：  用于配置拦截的路径，用于指定什么样的路径需要什么样的权限
+                pattern ： 路径匹配规则 /** 表示任意所有的，不管多少级目录的资源，都需要拦截
+                access ： 要想访问前面拦截的路径，就必须要有这样的权限：ROLE_ADMIN ， 由于前面写了false 所以这里必须是ROLE_开始，后面的字符串随意。
+    -->
+    <security:http auto-config="true" use-expressions="false">
+        <security:intercept-url pattern="/**" access="ROLE_ADMIN"/>
+
+
+    </security:http>
+
+
+    <!--
+        2. 认证管理：什么样的用户，具有什么样的权限
+            security:authentication-manager : 认证管理设置
+                security:authentication-provider ： 认证提供者
+                    security:user-service ： 认证服务
+                        security:user ： 认证的用户。
+
+     -->
+    <security:authentication-manager>
+        <security:authentication-provider>
+            <security:user-service>
+                <!--这里提供了一个用户，如果账号是admin,密码也是admin，密码是明文，一定要加上{noop},那么这个用户就拥有了 ROLE_ADMIN这个权限-->
+                <security:user name="admin" password="{noop}admin" authorities="ROLE_ADMIN"/>
+                <security:user name="zhangsan" password="{noop}123" authorities="ROLE_ABC"/>
+            </security:user-service>
+        </security:authentication-provider>
+    </security:authentication-manager>
+</beans>

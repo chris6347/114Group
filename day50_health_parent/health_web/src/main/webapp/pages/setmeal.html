@@ -379,9 +379,7 @@
                 //这里的参数：response =  response.data
                 //文件上传成功后的钩子，response为服务端返回的值，file为当前上传的文件封装成的js对象
                 handleAvatarSuccess(response, file) {
-
                     console.log(response);
-
                     if(response.flag){
                         //1. 显示图片
                         this.imageUrl = response.data.domain + response.data.fileName;
@@ -389,8 +387,6 @@
                         //2. 设置往数据库里面提交数据的时候，文件的名字。
                         this.formData.img = response.data.fileName;
                     }
-
-
                 },
                 //上传图片之前执行
                 beforeAvatarUpload(file) {
