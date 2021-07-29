@@ -1,0 +1,84 @@
+server:
+  port: 10880
+dubbo:
+  registry:
+    address: zookeeper://127.0.0.1:2181
+  application:
+    name: tanhua-server
+  consumer:
+    check: false
+  protocol:
+    name: dubbo
+logging:
+  level:
+    root: info
+    com:
+      tanhua: debug
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %msg - %logger{15}%n\'
+tanhua:
+  secret: 76bd425b6f29f7fcc2e0bfc286043df1
+  redisValidateCodeKeyPrefix: VALIDATECODE_
+  voiceCountPrefix: VOICECOUNT_
+  sms:
+    validateCodeTemplateCode: SMS_189616640
+    signName: 黑马程序员
+    parameterName: code
+    accessKeyId: LTAI5tSc4SxGdecXkyp83Xdy
+    accessKeySecret: I8SYcHpOjlM96Pxi9o9yDtQRy4UTIn
+  oss:
+    endpoint: http://oss-cn-shenzhen.aliyuncs.com
+    accessKeyId: LTAI5tSc4SxGdecXkyp83Xdy
+    accessKeySecret: I8SYcHpOjlM96Pxi9o9yDtQRy4UTIn
+    bucketName: tanhua-group1
+    url: http://tanhua-group1.oss-cn-shenzhen.aliyuncs.com
+  face:
+    appId: 24535700
+    apiKey: jVcVDuwFLMV3fwU6YcuTMXws
+    secretKey: hi6NEeT1hjn3fp6ESc7RdvCYc5jVUGyc
+  huanxin:
+    url: http://a1.easemob.com/
+    orgName: 1102210712041873
+    appName: demo
+    clientId: YXA6whUHFhr8TR-IqJr_jbfNDw
+    clientSecret: YXA6pJvq7AVlR00PnhhuuSZZ3Wo8Ftk
+  huawei:
+    username: a634716796
+    # password: AZTPO64AXEYOQPHNTLN
+    password: lili1234
+    project: cn-east-3
+    domain: hw_008613316915805_01
+    # 图片检测内容 politics：是否涉及政治人物的检测，terrorism：是否包含涉政暴恐元素的检测，porn：是否包含涉黄内容元素的检测，ad：是否包含广告的检测（公测特性），all：包含politics、terrorism和porn三种场景的检测
+    categoriesImage: politics,terrorism,porn
+    # 文字检测内容 politics：涉政，porn：涉黄，ad：广告，abuse：辱骂，contraband：违禁品，flood：灌水
+    categoriesText: politics,porn,ad,abuse,contraband,flood
+    textApiUrl: https://moderation.cn-east-3.myhuaweicloud.com/v1.0/moderation/text
+    imageApiUrl: https://moderation.cn-east-3.myhuaweicloud.com/v1.0/moderation/image/batch
+spring:
+  redis:
+    port: 6379
+    host: localhost
+  servlet:
+    multipart:
+      max-file-size: 30MB
+      max-request-size: 30MB
+# =========================================
+# 分布式文件系统FDFS配置
+# =========================================
+fdfs:
+  so-timeout: 1500 #读取时间
+  connect-timeout: 600 #连接超时时间
+  # 缩略图生成参数
+  thumb-image:
+    width: 150
+    height: 150
+  # TrackerList参数,支持多个
+  tracker-list: 127.0.0.1:22122
+  web-server-url: http://127.0.0.1:9999
+# =========================================
+#         RocketMQ
+# =========================================
+rocketmq:
+  name-server: 127.0.0.1:9876
+  producer:
+    group: tanhua

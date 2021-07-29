@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: item
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848 # 配置了注册中心(nacos-server)的地址
+server:
+  port: 18081

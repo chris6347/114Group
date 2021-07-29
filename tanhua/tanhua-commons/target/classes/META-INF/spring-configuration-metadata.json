@@ -1,0 +1,162 @@
+{
+  "groups": [
+    {
+      "name": "tanhua.face",
+      "type": "com.tanhua.commons.properties.FaceProperties",
+      "sourceType": "com.tanhua.commons.properties.FaceProperties"
+    },
+    {
+      "name": "tanhua.huanxin",
+      "type": "com.tanhua.commons.properties.HuanXinProperties",
+      "sourceType": "com.tanhua.commons.properties.HuanXinProperties"
+    },
+    {
+      "name": "tanhua.huawei",
+      "type": "com.tanhua.commons.properties.HuaWeiUGCProperties",
+      "sourceType": "com.tanhua.commons.properties.HuaWeiUGCProperties"
+    },
+    {
+      "name": "tanhua.oss",
+      "type": "com.tanhua.commons.properties.OssProperties",
+      "sourceType": "com.tanhua.commons.properties.OssProperties"
+    },
+    {
+      "name": "tanhua.sms",
+      "type": "com.tanhua.commons.properties.SmsProperties",
+      "sourceType": "com.tanhua.commons.properties.SmsProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "tanhua.face.api-key",
+      "type": "java.lang.String",
+      "sourceType": "com.tanhua.commons.properties.FaceProperties"
+    },
+    {
+      "name": "tanhua.face.app-id",
+      "type": "java.lang.String",
+      "sourceType": "com.tanhua.commons.properties.FaceProperties"
+    },
+    {
+      "name": "tanhua.face.secret-key",
+      "type": "java.lang.String",
+      "sourceType": "com.tanhua.commons.properties.FaceProperties"
+    },
+    {
+      "name": "tanhua.huanxin.app-name",
+      "type": "java.lang.String",
+      "sourceType": "com.tanhua.commons.properties.HuanXinProperties"
+    },
+    {
+      "name": "tanhua.huanxin.client-id",
+      "type": "java.lang.String",
+      "sourceType": "com.tanhua.commons.properties.HuanXinProperties"
+    },
+    {
+      "name": "tanhua.huanxin.client-secret",
+      "type": "java.lang.String",
+      "sourceType": "com.tanhua.commons.properties.HuanXinProperties"
+    },
+    {
+      "name": "tanhua.huanxin.org-name",
+      "type": "java.lang.String",
+      "sourceType": "com.tanhua.commons.properties.HuanXinProperties"
+    },
+    {
+      "name": "tanhua.huanxin.url",
+      "type": "java.lang.String",
+      "sourceType": "com.tanhua.commons.properties.HuanXinProperties"
+    },
+    {
+      "name": "tanhua.huawei.categories-image",
+      "type": "java.lang.String",
+      "sourceType": "com.tanhua.commons.properties.HuaWeiUGCProperties"
+    },
+    {
+      "name": "tanhua.huawei.categories-text",
+      "type": "java.lang.String",
+      "sourceType": "com.tanhua.commons.properties.HuaWeiUGCProperties"
+    },
+    {
+      "name": "tanhua.huawei.domain",
+      "type": "java.lang.String",
+      "sourceType": "com.tanhua.commons.properties.HuaWeiUGCProperties"
+    },
+    {
+      "name": "tanhua.huawei.image-api-url",
+      "type": "java.lang.String",
+      "sourceType": "com.tanhua.commons.properties.HuaWeiUGCProperties"
+    },
+    {
+      "name": "tanhua.huawei.password",
+      "type": "java.lang.String",
+      "sourceType": "com.tanhua.commons.properties.HuaWeiUGCProperties"
+    },
+    {
+      "name": "tanhua.huawei.project",
+      "type": "java.lang.String",
+      "sourceType": "com.tanhua.commons.properties.HuaWeiUGCProperties"
+    },
+    {
+      "name": "tanhua.huawei.text-api-url",
+      "type": "java.lang.String",
+      "sourceType": "com.tanhua.commons.properties.HuaWeiUGCProperties"
+    },
+    {
+      "name": "tanhua.huawei.username",
+      "type": "java.lang.String",
+      "sourceType": "com.tanhua.commons.properties.HuaWeiUGCProperties"
+    },
+    {
+      "name": "tanhua.oss.access-key-id",
+      "type": "java.lang.String",
+      "sourceType": "com.tanhua.commons.properties.OssProperties"
+    },
+    {
+      "name": "tanhua.oss.access-key-secret",
+      "type": "java.lang.String",
+      "sourceType": "com.tanhua.commons.properties.OssProperties"
+    },
+    {
+      "name": "tanhua.oss.bucket-name",
+      "type": "java.lang.String",
+      "sourceType": "com.tanhua.commons.properties.OssProperties"
+    },
+    {
+      "name": "tanhua.oss.endpoint",
+      "type": "java.lang.String",
+      "sourceType": "com.tanhua.commons.properties.OssProperties"
+    },
+    {
+      "name": "tanhua.oss.url",
+      "type": "java.lang.String",
+      "sourceType": "com.tanhua.commons.properties.OssProperties"
+    },
+    {
+      "name": "tanhua.sms.access-key-id",
+      "type": "java.lang.String",
+      "sourceType": "com.tanhua.commons.properties.SmsProperties"
+    },
+    {
+      "name": "tanhua.sms.access-key-secret",
+      "type": "java.lang.String",
+      "sourceType": "com.tanhua.commons.properties.SmsProperties"
+    },
+    {
+      "name": "tanhua.sms.parameter-name",
+      "type": "java.lang.String",
+      "sourceType": "com.tanhua.commons.properties.SmsProperties"
+    },
+    {
+      "name": "tanhua.sms.sign-name",
+      "type": "java.lang.String",
+      "sourceType": "com.tanhua.commons.properties.SmsProperties"
+    },
+    {
+      "name": "tanhua.sms.validate-code-template-code",
+      "type": "java.lang.String",
+      "sourceType": "com.tanhua.commons.properties.SmsProperties"
+    }
+  ],
+  "hints": []
+}

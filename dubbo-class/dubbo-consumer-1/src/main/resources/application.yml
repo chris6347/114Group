@@ -1,0 +1,14 @@
+dubbo:
+  application:
+    name: dubbo-consumer
+  registry:
+    address: zookeeper://127.0.0.1:2181
+  consumer:
+    # 启动时是否检查服务提供者是否在线,线上环境true,开发环境false,默认为true
+    check: false
+    loadbalance: leastactive
+    timeout: 3000
+    # 失败的重试次数
+    retries: 2
+server:
+  port: 18080

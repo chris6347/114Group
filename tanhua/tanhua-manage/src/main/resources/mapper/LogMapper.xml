@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tanhua.manage.mapper.LogMapper">
+    <select id="selectRetention1dCount" resultType="java.lang.Long">
+        select count(distinct user_id) from tb_log where type!='0101' and log_time=#{date}
+        and user_id in
+        <foreach collection="ids" open="(" close=")" separator="," item="i">
+            #{i}
+        </foreach>
+    </select>
+</mapper>
