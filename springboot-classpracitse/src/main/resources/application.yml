@@ -1,0 +1,25 @@
+server:
+  port: 8080
+spring:
+  profiles:
+    active: dev   # 指定application-dev.yml  默认匹配后缀(-后面)
+name: zhangsan
+city:
+  - beijing
+  - shanghai
+  - guangzhou
+  - shenzhen
+  # 数组使用-加空格
+students:
+  - name: zhangsan
+    age: 1
+  - name: lisi
+    age: 2
+  - name: wangwu
+    age: 3
+    score: 4
+maps: {"name":"zhangsan","age":"15"}
+person:
+  a:
+    name: ${name}
+    age: 5

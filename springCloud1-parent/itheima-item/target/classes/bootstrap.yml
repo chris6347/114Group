@@ -1,0 +1,43 @@
+#spring:
+  #profiles:
+    #active: dev
+
+spring:
+  application:
+    name: item
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+      config: # 配置中心
+        server-addr: localhost:8848
+        file-extension: yaml #指定配置文件后缀为yaml,需要和配置中心的配置DATA-ID后缀一致
+        #namespace: test #测试环境
+    sentinel:
+      transport:
+        port: 8719 # http服务的端口,用于规则设置生效时使用
+        dashboard: localhost:8080 # 链接到的控制台服务端的地址链接
+  zipkin:
+    sender:
+      type: web # 设置收集数据的方式.通过http的方式收集
+    base-url: http://localhost:9411 # 设置zipkin的服务端ip地址和端口号
+  sleuth:
+    sampler:
+      probability: 1 # 设置采集请求的概率.设置为1 表示所有请求都采集, 默认是10%
+  profiles:
+    active: dev
+---
+#spring:
+  #application:
+   # name: item
+  #cloud:
+    #nacos:
+     # discovery:
+     #   server-addr: localhost:8848
+     # config:
+     #   server-addr: localhost:8848
+     #   file-extension: yaml
+     #  namespace: dev
+  #profiles: dev
+
+

@@ -1,0 +1,82 @@
+spring:
+  profiles:
+    active: dev
+---
+server:
+  port: 9005
+spring:
+  profiles: dev
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+      server-addr: 127.0.0.1:8848
+  application:
+    name: leadnews-dfs
+  servlet:
+    multipart:
+      max-request-size: 10MB
+      max-file-size: 10MB
+fdfs:
+  so-timeout: 1501
+  connect-timeout: 601
+  thumb-image:
+    height: 150
+    width: 150
+  tracker-list:
+    - 127.0.0.1:22122 # TrackerList参数,支持多个
+  web-server-url: http://127.0.0.1:9999/  # 设置前缀路径
+logging:
+  level.com: debug
+---
+server:
+  port: 9005
+spring:
+  profiles: test
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+  application:
+    name: leadnews-dfs
+  servlet:
+    multipart:
+      max-request-size: 10MB
+      max-file-size: 10MB
+fdfs:
+  so-timeout: 1501
+  connect-timeout: 601
+  thumb-image:
+    height: 150
+    width: 150
+  tracker-list:
+    - 127.0.0.1:22122 # TrackerList参数,支持多个
+  web-server-url: http://127.0.0.1:9999/  # 设置前缀路径
+logging:
+  level.com: debug
+---
+server:
+  port: 9005
+spring:
+  profiles: pro
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+  application:
+    name: leadnews-dfs
+  servlet:
+    multipart:
+      max-request-size: 10MB
+      max-file-size: 10MB
+fdfs:
+  so-timeout: 1501
+  connect-timeout: 601
+  thumb-image:
+    height: 150
+    width: 150
+  tracker-list:
+    - 127.0.0.1:22122 # TrackerList参数,支持多个
+  web-server-url: http://127.0.0.1:9999/  # 设置前缀路径
+logging:
+  level.com: debug

@@ -1,0 +1,13 @@
+com/itheima/article/pojo/ApArticleContent.class
+com/itheima/article/pojo/ApEquipmentCode.class
+com/itheima/article/pojo/ApArticle.class
+com/itheima/article/pojo/ApArticleLabel.class
+com/itheima/article/pojo/ApArticleConfig.class
+com/itheima/article/pojo/ApAuthor.class
+com/itheima/article/pojo/ApAssociateWords.class
+com/itheima/article/pojo/ApEquipment.class
+com/itheima/article/pojo/ApHotWords.class
+com/itheima/article/pojo/ApCollection.class
+com/itheima/article/pojo/ApDynamic.class
+com/itheima/article/feign/ApAuthorFeign.class
+com/itheima/article/pojo/ApHotArticles.class

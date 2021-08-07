@@ -1,0 +1,12 @@
+/Users/chris/IdeaProjects/javaweb114/itheima-leadnews/itheima-leadnews-api/itheima-leadnews-wemedia-api/src/main/java/com/itheima/media/pojo/WmMaterial.java
+/Users/chris/IdeaProjects/javaweb114/itheima-leadnews/itheima-leadnews-api/itheima-leadnews-wemedia-api/src/main/java/com/itheima/media/pojo/WmFansPortrait.java
+/Users/chris/IdeaProjects/javaweb114/itheima-leadnews/itheima-leadnews-api/itheima-leadnews-wemedia-api/src/main/java/com/itheima/media/pojo/WmFansStatistics.java
+/Users/chris/IdeaProjects/javaweb114/itheima-leadnews/itheima-leadnews-api/itheima-leadnews-wemedia-api/src/main/java/com/itheima/media/pojo/WmNews.java
+/Users/chris/IdeaProjects/javaweb114/itheima-leadnews/itheima-leadnews-api/itheima-leadnews-wemedia-api/src/main/java/com/itheima/media/pojo/WmUser.java
+/Users/chris/IdeaProjects/javaweb114/itheima-leadnews/itheima-leadnews-api/itheima-leadnews-wemedia-api/src/main/java/com/itheima/media/pojo/WmUserEquipment.java
+/Users/chris/IdeaProjects/javaweb114/itheima-leadnews/itheima-leadnews-api/itheima-leadnews-wemedia-api/src/main/java/com/itheima/media/pojo/WmSubUser.java
+/Users/chris/IdeaProjects/javaweb114/itheima-leadnews/itheima-leadnews-api/itheima-leadnews-wemedia-api/src/main/java/com/itheima/media/pojo/WmUserLogin.java
+/Users/chris/IdeaProjects/javaweb114/itheima-leadnews/itheima-leadnews-api/itheima-leadnews-wemedia-api/src/main/java/com/itheima/media/pojo/WmNewsStatistics.java
+/Users/chris/IdeaProjects/javaweb114/itheima-leadnews/itheima-leadnews-api/itheima-leadnews-wemedia-api/src/main/java/com/itheima/media/pojo/WmNewsMaterial.java
+/Users/chris/IdeaProjects/javaweb114/itheima-leadnews/itheima-leadnews-api/itheima-leadnews-wemedia-api/src/main/java/com/itheima/media/feign/WmUserFeign.java
+/Users/chris/IdeaProjects/javaweb114/itheima-leadnews/itheima-leadnews-api/itheima-leadnews-wemedia-api/src/main/java/com/itheima/media/pojo/WmUserAuth.java

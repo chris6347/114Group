@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql:///itcast_mp?useSSL=false
+    username: root
+    password: root
+  redis:
+    host: localhost
+    port: 6379
+dubbo:
+  registry:
+    address: zookeeper://127.0.0.1:2181
+  # 协议
+  protocol:
+    name: dubbo
+    port: 18080
+  scan:
+    base-packages: com.itheima.service
+  application:
+    name: dubbo-provider-mybatisPlus
+server:
+  port: 8082
+mybatis-plus:
+  global-config:
+    db-config:
+      table-prefix: t_
+      id-type: auto
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

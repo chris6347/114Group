@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql:///itcast_mp?useSSL=false&characterEncoding=utf8
+    username: root
+    password: root
+mybatis-plus:
+  # 全局配置
+  global-config:
+    # 数据库配置
+    db-config:
+      # 表名前缀
+      table-prefix: tb_
+      # id生成策略 这里是数据库自增 . 全局有效,实体类中另有配置则会覆盖
+      id-type: auto
+  # 配置
+  configuration:
+    # 日志
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

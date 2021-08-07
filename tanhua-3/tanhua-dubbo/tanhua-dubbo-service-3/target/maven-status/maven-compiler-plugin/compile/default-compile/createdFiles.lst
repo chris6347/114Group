@@ -1,0 +1,6 @@
+com/tanhua/dubbo/mapper/UserInfoMapper.class
+com/tanhua/dubbo/api/UserApiImpl.class
+com/tanhua/dubbo/handler/MyMetaObjectHandler.class
+com/tanhua/DubboServiceApplication.class
+com/tanhua/dubbo/mapper/UserMapper.class
+com/tanhua/dubbo/api/UserInfoApiImpl.class

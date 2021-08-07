@@ -1,0 +1,4 @@
+com/itheima/GatewayApplication.class
+com/itheima/filter/LoginGlobalFilter.class
+com/itheima/filter/MyParamGatewayFilterFactory.class
+com/itheima/filter/MyParamGatewayFilterFactory$1.class

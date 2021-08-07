@@ -1,0 +1,12 @@
+com/itheima/media/pojo/WmNews.class
+com/itheima/media/pojo/WmUserLogin.class
+com/itheima/media/pojo/WmUserEquipment.class
+com/itheima/media/pojo/WmFansStatistics.class
+com/itheima/media/feign/WmUserFeign.class
+com/itheima/media/pojo/WmUserAuth.class
+com/itheima/media/pojo/WmNewsStatistics.class
+com/itheima/media/pojo/WmNewsMaterial.class
+com/itheima/media/pojo/WmSubUser.class
+com/itheima/media/pojo/WmUser.class
+com/itheima/media/pojo/WmMaterial.class
+com/itheima/media/pojo/WmFansPortrait.class

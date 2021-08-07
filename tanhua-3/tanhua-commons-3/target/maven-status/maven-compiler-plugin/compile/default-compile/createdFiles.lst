@@ -1,0 +1,8 @@
+com/tanhua/commons/templates/SmsTemplate.class
+com/tanhua/commons/properties/SmsProperties.class
+com/tanhua/commons/properties/OssProperties.class
+com/tanhua/commons/properties/FaceProperties.class
+com/tanhua/commons/exception/TanhuaException.class
+com/tanhua/commons/CommonsAutoConfiguration.class
+com/tanhua/commons/templates/FaceTemplate.class
+com/tanhua/commons/templates/OssTemplate.class

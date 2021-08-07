@@ -1,0 +1,6 @@
+com/tanhua/domain/vo/UserInfoVo.class
+com/tanhua/domain/db/User.class
+com/tanhua/domain/db/UserInfo.class
+com/tanhua/domain/vo/ErrorResult.class
+com/tanhua/domain/vo/ErrorResult$ErrorResultBuilder.class
+com/tanhua/domain/db/BasePojo.class

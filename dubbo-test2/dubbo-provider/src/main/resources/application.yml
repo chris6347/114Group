@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql:///itcast_dubbo?useSSL=false
+    username: root
+    password: root
+server:
+  port: 8080
+dubbo:
+  application:
+    name: dubbo-provider
+  scan:
+    base-packages: com.itheima.service
+  registry:
+    address: zookeeper://127.0.0.1:2181
+  protocol:
+    name: dubbo
+    port: 20880  # consumer不用指定了,指定了别的端口号也还是用的这个
